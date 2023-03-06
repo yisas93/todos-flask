@@ -11,7 +11,7 @@ export const Home = () => {
 			<div className="todo"style={{border: "1px solid red"}}>
 				<h1>ToDos</h1>
 					<form type="submit">
-						<input type="text" placeholder="Name"/>
+						<input type="text" placeholder="Enter your new To Do!"/>
 					</form>
 			</div>
 		</div>

@@ -62,4 +62,42 @@ def delete_todo(user_param, todo_index):
     return jsonify({"resp": "todo eliminado exitosamente"}), 200
 
 
+@api.route('/todos/signup', methods=['POST'])
+def signup():
+    email=request.json.get("email")
+    password=request.json.get("password")
+    signup=User(email=email, password=password)
+    users = User.query.filter(User.email == email).first()
 
+    if users != None:
+        return jsonify({"msg": "User already exist"}), 404
+
+    db.session.add(signup)
+    db.session.commit()
+
+    return jsonify({"msg": "User created succefully"}), 201
+    
+# LOGIN USER ✔️
+@api.route("/todos/login", methods=["POST"])
+def user_login():
+    email = request.json.get("email")
+    password = request.json.get("password")
+    # user = User.query.filter(User.email == email).first()
+    user = User.query.filter(User.email == email).first()
+    # No encuentro Usuario
+
+    if user == None:
+        return jsonify({"msg": "invalid login"}), 401
+    elif user.password != password:
+        return jsonify({"msg": "invalid login"}), 401
+    else:
+        return (
+            jsonify(
+                {
+                    "success": "User login successfully",
+                }
+            ),
+            200,
+        )
+
+    
