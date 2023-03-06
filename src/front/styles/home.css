@@ -5,3 +5,11 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+
+.todo{
+    margin: auto;
+    height: 20rem;
+    width: 35rem;
+    color: aliceblue;
+    background-color: aliceblue;
+}
