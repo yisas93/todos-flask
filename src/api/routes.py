@@ -91,13 +91,7 @@ def user_login():
     elif user.password != password:
         return jsonify({"msg": "invalid login"}), 401
     else:
-        return (
-            jsonify(
-                {
-                    "success": "User login successfully",
-                }
-            ),
-            200,
-        )
+        return jsonify( {"success": "User login successfully",}),200
+        
 
     

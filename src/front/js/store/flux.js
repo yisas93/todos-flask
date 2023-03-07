@@ -1,3 +1,4 @@
+const apiUrl = process.env.BACKEND_URL
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -19,10 +20,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			login: async(user)=>{
-
+				let result = await fetch(`${apiUrl}/api/todos/login`,{
+					method: "POST",
+					body: JSON.stringify(user),
+					
+					headers:{
+						"Content-Type": "application/json",
+						"Access-Control-Allow-Origin": "*",
+					}
+				});
+				result = await result.json();
+				localStorage.setItem("user", JSON.stringify(user));
+				console.log("result", result);
 			},
 
+			SignUp: async(user)=>{
+				let result = await fetch(`${apiUrl}/api/todos/signup`,{
+					method: "POST",
+					body: JSON.stringify(user),
+					headers:{"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "*",
 
+					}
+				});
+				result = await result.json()
+				localStorage.setItem("user", JSON.stringify(user))
+				console.log("result", result);
+			},
 
 
 
